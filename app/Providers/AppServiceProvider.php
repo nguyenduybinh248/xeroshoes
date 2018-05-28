@@ -22,23 +22,23 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-	    $categorys = Category::orderBy('id','desc')->get();
+	    $categorys = Category::orderBy('name')->get();
 	    foreach ($categorys as $category){
 	    	$product = Product::where('category_id',$category->id)->orderBy('created_at','DESC')->first();
 	    	$category->thumbnail = $product->thumbnail;
 	    }
 	    View::share(compact('categorys'));
 
-	    $brands = Brand::orderBy('id','desc')->get();
+	    $brands = Brand::orderBy('name')->get();
 	    View::share(compact('brands'));
 
-	    $colors = Color::orderBy('id','desc')->get();
+	    $colors = Color::orderBy('color')->get();
 	    View::share(compact('colors'));
 
 	    $products = Product::orderBy('id','desc')->get();
 	    View::share(compact('products'));
 
-	    $sizes = Size::orderBy('id','desc')->get();
+	    $sizes = Size::orderBy('size')->get();
 	    View::share(compact('sizes'));
 
 	    $images = Image::orderBy('created_at','DESC')->get();

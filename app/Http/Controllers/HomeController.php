@@ -49,6 +49,12 @@ class HomeController extends Controller
     }
 
     public function indextest(){
+//$p = ProductDetail::where('size_id',44)->get();
+//dd($p);
+    	$products =  Product::with('product_details')->join('product_colors','products.id','=','product_colors.product_id')
+		    ->join('product_details','product_colors.id','=','product_details.product_color_id')
+		    ->where('product_details.size_id','=',44)->select('products.*')->groupBy('products.id')->paginate(9);
+    	dd($products);
 
 //    	$size= 1;
 //    	$product = Product::whereHas('product_details',function ($query)use($size){
