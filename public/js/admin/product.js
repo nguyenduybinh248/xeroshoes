@@ -27,7 +27,7 @@ $(document).on('click','.btn-warning',function () {
     $('#hidden_edit').val(slug);
     $.ajax({
         type:'get',
-        url:'http://xeroshoes.shop/admin/product/' + slug,
+        url: domain + 'admin/product/' + slug,
         success:function(response){
             $('#edit_name').val(response.name);
             $('#edit_price').val(response.price);
@@ -35,7 +35,7 @@ $(document).on('click','.btn-warning',function () {
             $('#category_id').val(response.category_id);
             $('#edit_type').val(response.type);
             $('#edit_description').val(response.description);
-            $('.blah').attr('src', 'http://xeroshoes.shop/'+ response.thumbnail).css('display', 'block');
+            $('.blah').attr('src', domain + response.thumbnail).css('display', 'block');
             $('#hidden_thumbnail').val(response.thumbnail);
         }
     });
@@ -61,7 +61,7 @@ $(document).on('click','.edit_product',function () {
     var formdata = new FormData($("#add_thumbnail")[0]);
     $.ajax({
         type:'post',
-        url:'http://xeroshoes.shop/admin/postimg',
+        url: domain + 'admin/postimg',
         data:formdata,
         cache:false,
         dataType:'text',
@@ -73,7 +73,7 @@ $(document).on('click','.edit_product',function () {
     });
     $.ajax({
         type:'put',
-        url: 'http://xeroshoes.shop/admin/product/'+ slug,
+        url: domain + 'admin/product/'+ slug,
         data:{
             name: name,
             brand: brand,
@@ -93,7 +93,7 @@ $(document).on('click','.edit_product',function () {
             else {
                 var sale = 'Not Sale';
             }
-            $('.tr'+response.id).replaceWith('<tr class="'+ response.id +'" data-id="'+ response.id +'"><td class="stl-column"><img src="http://xeroshoes.shop/'+ response.thumbnail +'" width="50px" height="50px"></td><td class="stl-column">'+ response.name +'</td><td class="stl-column">'+ response.brand_name +'</td><td class="stl-column">'+ response.category_name +'</td><td class="stl-column">'+ response.original_price +'</td><td class="stl-column">'+ response.price +'</td><td class="stl-column">'+ sale +'</td><td class="stl-column">'+ response.sale_price +'</td><td class="stl-column">'+ response.quantity +'</td><td class="stl-column">'+ response.star +' Star</td><td class="stl-column">'+ response.created +'</td><td class="stl-column">'+ response.updated +'</td><td class="stl-column"><button class="btn btn-xs btn-info" data-slug="'+ response.slug +'" >show</button><button class="btn btn-xs btn-warning"  data-slug="'+ response.slug +'">edit</button><button class="btn btn-xs btn-danger"  data-slug="'+ response.slug +'">delete</button></td></tr>');
+            $('.tr'+response.id).replaceWith('<tr class="'+ response.id +'" data-id="'+ response.id +'"><td class="stl-column"><img src="' + domain + response.thumbnail +'" width="50px" height="50px"></td><td class="stl-column">'+ response.name +'</td><td class="stl-column">'+ response.brand_name +'</td><td class="stl-column">'+ response.category_name +'</td><td class="stl-column">'+ response.original_price +'</td><td class="stl-column">'+ response.price +'</td><td class="stl-column">'+ sale +'</td><td class="stl-column">'+ response.sale_price +'</td><td class="stl-column">'+ response.quantity +'</td><td class="stl-column">'+ response.star +' Star</td><td class="stl-column">'+ response.created +'</td><td class="stl-column">'+ response.updated +'</td><td class="stl-column"><button class="btn btn-xs btn-info" data-slug="'+ response.slug +'" >show</button><button class="btn btn-xs btn-warning"  data-slug="'+ response.slug +'">edit</button><button class="btn btn-xs btn-danger"  data-slug="'+ response.slug +'">delete</button></td></tr>');
         }
     });
 });
@@ -105,11 +105,11 @@ $(document).on('click','.btn-danger',function () {
     $('#delete_product').modal('show');
     $.ajax({
         type:'get',
-        url:'http://xeroshoes.shop/admin/product/' + slug,
+        url:domain + 'admin/product/' + slug,
         success:function(response){
             $('#hidden_delete').val(response.id);
             $('.delete_product_name').text(response.name);
-            $('.delete_product_image').attr('src','http://xeroshoes.shop/'+response.thumbnail).css('display','block');
+            $('.delete_product_image').attr('src', domain +response.thumbnail).css('display','block');
         }
     });
 
@@ -119,7 +119,7 @@ $(document).on('click','.btn_delete',function () {
    var id = $('#hidden_delete').val();
    $.ajax({
        type:'delete',
-       url: 'http://xeroshoes.shop/admin/product/' + id,
+       url: domain + 'admin/product/' + id,
        success:function(response){
            toastr.success('edit product successfully');
            $('.delete_product_name').text();
@@ -135,7 +135,7 @@ $(document).on('click','.btn-info',function () {
     var slug = $(this).data('slug');
     $.ajax({
         type: 'get',
-        url: 'http://xeroshoes.shop/admin/show/'+ slug,
+        url: domain + 'admin/show/'+ slug,
         success: function (response) {
             $('#show_detail').modal('show');
             $('.detail_body').html(response.html);

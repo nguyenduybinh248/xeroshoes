@@ -2,7 +2,7 @@
 $j(document).on('click','#destroy_cart',function () {
    $j.ajax({
        type : 'delete' ,
-       url: 'http://xeroshoes.shop/cart/destroy/',
+       url: domain + 'cart/destroy/',
        success: function () {
            toastr.success('delete cart successfully');
            $j('.row_cart').remove();
@@ -19,7 +19,7 @@ $j(document).on('click','.shopping-cart-table__delete',function () {
     var rowId = $j(this).data('row');
     $j.ajax({
         type: 'delete',
-        url: 'http://xeroshoes.shop/cart/destroy/' + rowId,
+        url: domain + 'cart/destroy/' + rowId,
         success: function (response) {
             toastr.success('delete product from cart successfully');
             $j('#tr'+rowId).remove();
@@ -37,7 +37,7 @@ $j(document).on('click','.shopping-cart-table__create',function () {
     var rowId = $j(this).data('row');
     $j.ajax({
         type: 'get',
-        url: 'http://xeroshoes.shop/cart/edit/' + rowId,
+        url: domain + 'cart/edit/' + rowId,
         success: function (response) {
             $j('#body_edit_cart').replaceWith(response.html);
             $j('#modal_edit').modal('show');

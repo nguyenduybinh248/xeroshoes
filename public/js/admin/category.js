@@ -4,7 +4,7 @@ $(function () {
         e.preventDefault();
         $.ajax({
             type: 'post',
-            url: 'http://xeroshoes.shop/admin/category',
+            url: domain + 'admin/category',
             data: {
                 name: $('#name').val()
             },
@@ -34,7 +34,7 @@ $(function () {
         var id = $(this).data('id');
         $.ajax({
             type : 'get',
-            url: 'http://xeroshoes.shop/admin/category/' + id + '/edit',
+            url: domain + 'admin/category/' + id + '/edit',
             success: function (response) {
                 $('#name_edit').val(response.name);
                 $('.hidden-id-edit').text(id);
@@ -48,7 +48,7 @@ $(function () {
         var id = $('.hidden-id-edit').text();
         $.ajax({
             type: 'put',
-            url: 'http://xeroshoes.shop/admin/category/' + id,
+            url: domain + 'admin/category/' + id,
             data: {
                 name: $('#name_edit').val()
             },
@@ -72,7 +72,7 @@ $(function () {
         var id = $(this).data('id');
         $.ajax({
             type : 'get',
-            url: 'http://xeroshoes.shop/admin/category/' + id +'/edit',
+            url: domain + 'admin/category/' + id +'/edit',
             success: function (response) {
                 $('#name-delete').text(response.name);
                 $('.hidden-id').text(id);
@@ -86,7 +86,7 @@ $(function () {
         var id = $('.hidden-id').text();
         $.ajax({
             type: 'delete',
-            url: 'http://xeroshoes.shop/admin/category/' + id,
+            url: domain + 'admin/category/' + id,
             // data: {
             //     id: id
             // },

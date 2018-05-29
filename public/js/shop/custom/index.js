@@ -10,7 +10,7 @@ $j(document).on('click','.quick_view_btn',function () {
     var slug = $j(this).data('slug');
     $j.ajax({
         type: 'get',
-        url: 'http://xeroshoes.shop/product/view/' + slug,
+        url: domain + 'product/view/' + slug,
         success: function (response) {
             $j('#product_thumbnail').attr('src', domain + response.product.thumbnail);
             $j('#product_code').text(response.product.product_code);
@@ -33,7 +33,7 @@ $j(document).on('click','.color_of_product',function () {
    $j(this).addClass('color_selected');
    $j.ajax({
        type: 'get',
-       url: 'http://xeroshoes.shop/product/size/' + color,
+       url: domain + 'product/size/' + color,
        success: function (response) {
            $j('#product_sizes').html(response.html);
            $j('#color_error').css('display','none');
@@ -68,7 +68,7 @@ $j(document).on('click','#product_add_cart',function (e) {
    else {
        $j.ajax({
            type: 'post',
-           url: 'http://xeroshoes.shop/add/cart',
+           url: domain + 'add/cart',
            data:{
                product_color_id: product_color_id,
                size_id: size_id,

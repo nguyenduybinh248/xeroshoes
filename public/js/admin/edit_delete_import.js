@@ -9,7 +9,7 @@ $(document).on('click','.btn_delete',function () {
     var id = $('#hidden_delete').val();
     $.ajax({
         type:'delete',
-        url:'http://xeroshoes.shop/admin/stockin' + '/' + id,
+        url:domain + 'admin/stockin' + '/' + id,
         success:function(response){
             $('#delete_import').modal('hide');
             toastr.success('Delete successfully');
@@ -25,7 +25,7 @@ $(document).on('click', '.btn-warning',function () {
     $('#hidden_edit').val(id);
     $.ajax({
         type:'get',
-        url:'http://xeroshoes.shop/admin/stockin' + '/' + id,
+        url:domain + 'admin/stockin' + '/' + id,
         success:function(response){
             $('#name_edit').val(response.name);
             $("#name_edit").prop('disabled', true);
@@ -43,7 +43,7 @@ $(document).on('click','.btn_edit',function () {
     var id = $('#hidden_edit').val();
     $.ajax({
         type:'put',
-        url:'http://xeroshoes.shop/admin/stockin' + '/' + id,
+        url:domain + 'admin/stockin' + '/' + id,
         data:{
             'color':$('#color_edit').val(),
             'size':$('#size_edit').val(),

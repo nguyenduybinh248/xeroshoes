@@ -128,7 +128,7 @@ $('#name').blur(function () {
                     $('#product_details').css('display','block');
                     $.ajax({
                         type: 'get',
-                        url: 'http://xeroshoes.shop/admin/product/' + slug,
+                        url: domain + 'admin/product/' + slug,
                         success: function (response) {
                             $('#brand').val(response.brandname);
                             $("#brand").prop('disabled', true);
@@ -141,7 +141,7 @@ $('#name').blur(function () {
                             $("#thumbnail").prop('disabled', true);
                             $("#hidden_thumbnail").val(response.thumbnail);
                             $("#hidden_thumbnail").prop('disabled', true);
-                            $('.blah').attr('src', 'http://xeroshoes.shop/'+ response.thumbnail);
+                            $('.blah').attr('src', domain + response.thumbnail);
                             $('.blah').css('display', 'block');
                             $('#description').val(response.description);
                             $("#description").prop('disabled', true);
@@ -199,7 +199,7 @@ $('.stock_in').on('click',function (e) {
     var formdata = new FormData($("#add-new")[0]);
     $.ajax({
         type:'post',
-        url:'http://xeroshoes.shop/admin/postimg',
+        url: domain + 'admin/postimg',
         data:formdata,
         cache:false,
         dataType:'text',
@@ -212,7 +212,7 @@ $('.stock_in').on('click',function (e) {
     });
     $.ajax({
         type:'post',
-        url:'http://xeroshoes.shop/admin/stockin',
+        url:domain + 'admin/stockin',
         data:{
             name: name,
             brand: brand,
@@ -258,7 +258,7 @@ $(document).on('mouseenter',".product_code",function() {
     timer = setTimeout(function(){
         $.ajax({
             type:'get',
-            url:'http://xeroshoes.shop/admin/import' + '/' + slug,
+            url:domain + 'admin/import' + '/' + slug,
             success:function(response){
                 $('#modal_import_body').html(response.html);
             }
@@ -278,7 +278,7 @@ $(document).on('click','.btn-info',function () {
     var id = $(this).data('id');
     $.ajax({
         type:'get',
-        url:'http://xeroshoes.shop/admin/stockin' + '/' + id,
+        url:domain + 'admin/stockin' + '/' + id,
         success:function(response){
             $('#show_notes').modal('show');
             $('#show_notes_body').html('<p>'+ response.notes +'</p>');

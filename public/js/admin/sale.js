@@ -73,7 +73,7 @@ $('#choose_products').on('click',function () {
     $('#choose_products_modal').modal('show');
     $.ajax({
         type:'get',
-        url:'http://xeroshoes.shop/admin/sale/create',
+        url: domain + 'admin/sale/create',
         success:function(response){
             $('#choose_products_body').html(response.html);
         }
@@ -103,7 +103,7 @@ $(document).on('click','#add_sale_btn',function (e) {
     var formdata = new FormData($("#form_add_sale")[0]);
     $.ajax({
         type:'post',
-        url:'http://xeroshoes.shop/admin/postimg',
+        url: domain + 'admin/postimg',
         data:formdata,
         cache:false,
         dataType:'text',
@@ -115,7 +115,7 @@ $(document).on('click','#add_sale_btn',function (e) {
     });
     $.ajax({
         type:'post',
-        url:'http://xeroshoes.shop/admin/sale',
+        url: domain + 'admin/sale',
         data:{
             title : title,
             begin_date : begin_date,
@@ -128,7 +128,7 @@ $(document).on('click','#add_sale_btn',function (e) {
             $('#add-sale').modal('hide');
             $('#hidden_banner').val('');
             toastr.success('add sale_event successfully');
-            $('#sale_events').prepend('<tr class="tr'+ response.slug +'"><td>'+ response.title +'</td><td><img src="http://xeroshoes.shop/'+ response.banner +'" style="max-height: 100px;max-width: 100%"></td><td>'+ response.begin_date +'</td><td>'+ response.end_date +'</td><td>'+ response.created +'</td><td>'+ response.updated +'</td><td><button class="btn btn-xs btn-info" data-slug="'+ response.slug +'">show</button>&nbsp;<button class="btn btn-xs btn-warning"  data-slug="'+ response.slug +'">edit</button>&nbsp;<button class="btn btn-xs btn-danger"  data-slug="'+ response.slug +'">delete</button></td></tr>');
+            $('#sale_events').prepend('<tr class="tr'+ response.slug +'"><td>'+ response.title +'</td><td><img src="' + domain + response.banner +'" style="max-height: 100px;max-width: 100%"></td><td>'+ response.begin_date +'</td><td>'+ response.end_date +'</td><td>'+ response.created +'</td><td>'+ response.updated +'</td><td><button class="btn btn-xs btn-info" data-slug="'+ response.slug +'">show</button>&nbsp;<button class="btn btn-xs btn-warning"  data-slug="'+ response.slug +'">edit</button>&nbsp;<button class="btn btn-xs btn-danger"  data-slug="'+ response.slug +'">delete</button></td></tr>');
         }
     });
 });
@@ -139,7 +139,7 @@ $(document).on('click','.btn-info',function () {
    var slug = $(this).data('slug');
    $.ajax({
        type:'get',
-       url: 'http://xeroshoes.shop/admin/sale/' + slug,
+       url: domain + 'admin/sale/' + slug,
        success: function (response) {
            $('#show_products_body').html(response.html);
            $('#show_products').modal('show');
@@ -173,7 +173,7 @@ $(document).on('click','.btn-warning',function () {
     var slug = $(this).data('slug');
     $.ajax({
         type:'get',
-        url:'http://xeroshoes.shop/admin/sale/' + slug + '/edit',
+        url: domain + 'admin/sale/' + slug + '/edit',
         success:function(response){
             arr_products = response.arr_products;
             console.log(arr_products);
@@ -184,7 +184,7 @@ $(document).on('click','.btn-warning',function () {
             $('#edit_end_date').val(response.end_date);
             $('#edit_content').val(response.content);
             $('#hidden_banner').val(response.banner);
-            $('#sale_banner_edit').attr('src','http://xeroshoes.shop/'+response.banner).css('display','block');
+            $('#sale_banner_edit').attr('src',domain + response.banner).css('display','block');
         }
     });
 });
@@ -194,7 +194,7 @@ $('#edit_products_on_sale').on('click',function () {
     $('#choose_products_modal').modal('show');
     $.ajax({
         type:'get',
-        url:'http://xeroshoes.shop/admin/sale/edit/' + slug,
+        url: domain + 'admin/sale/edit/' + slug,
         success:function(response){
             $('#choose_products_body').html(response.html);
         }
@@ -215,7 +215,7 @@ $('#edit_sale_btn').on('click',function (e) {
     var products = arr_products;
     $.ajax({
         type:'post',
-        url:'http://xeroshoes.shop/admin/postimg',
+        url: domain + 'admin/postimg',
         data:formdata,
         cache:false,
         dataType:'text',
@@ -227,7 +227,7 @@ $('#edit_sale_btn').on('click',function (e) {
     });
     $.ajax({
         type:'put',
-        url:'http://xeroshoes.shop/admin/sale/' + slug,
+        url: domain + 'admin/sale/' + slug,
         data:{
             title : title,
             begin_date : begin_date,
@@ -240,7 +240,7 @@ $('#edit_sale_btn').on('click',function (e) {
             $('#edit-sale').modal('hide');
             $('#hidden_banner').val('');
             toastr.success('edit sale_event successfully');
-            $('#sale_events').prepend('<tr class="tr'+ response.slug +'"><td>'+ response.title +'</td><td><img src="http://xeroshoes.shop/'+ response.banner +'" style="max-height: 100px;max-width: 100%"></td><td>'+ response.begin_date +'</td><td>'+ response.end_date +'</td><td>'+ response.created +'</td><td>'+ response.updated +'</td><td><button class="btn btn-xs btn-info" data-slug="'+ response.slug +'">show</button>&nbsp;<button class="btn btn-xs btn-warning"  data-slug="'+ response.slug +'">edit</button>&nbsp;<button class="btn btn-xs btn-danger"  data-slug="'+ response.slug +'">delete</button></td></tr>');
+            $('#sale_events').prepend('<tr class="tr'+ response.slug +'"><td>'+ response.title +'</td><td><img src=' + domain + response.banner +'" style="max-height: 100px;max-width: 100%"></td><td>'+ response.begin_date +'</td><td>'+ response.end_date +'</td><td>'+ response.created +'</td><td>'+ response.updated +'</td><td><button class="btn btn-xs btn-info" data-slug="'+ response.slug +'">show</button>&nbsp;<button class="btn btn-xs btn-warning"  data-slug="'+ response.slug +'">edit</button>&nbsp;<button class="btn btn-xs btn-danger"  data-slug="'+ response.slug +'">delete</button></td></tr>');
         }
     });
 });
