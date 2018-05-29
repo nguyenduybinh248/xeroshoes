@@ -19,8 +19,6 @@
                     <h4 class="modal-title">ADD CATEGORY</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" role="form" id="add-new">
-                        @csrf
                         <div class="form-group" id="name-add">
                             <label for="">Category name</label>
                             <input type="text" class="form-control" name="name" id="name" placeholder="name">
@@ -28,8 +26,7 @@
 
 
 
-                        <button type="submit" class="btn btn-primary">ADD</button>
-                    </form>
+                        <button type="submit" class="btn btn-primary" id="btn_add_category">ADD</button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

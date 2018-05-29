@@ -24,35 +24,43 @@
                                     <div class="form-group">
                                         <label for="email">Email Address</label>
                                         <input type="text" class="form-control" id="email">
+                                        <p id="error_email" style="display: none;color: crimson"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="name"> Name</label>
                                         <input type="text" class="form-control" id="name">
+                                        <p id="error_name" style="display: none;color: crimson"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">Phone Number</label>
                                         <input type="number" class="form-control" id="phone">
+                                        <p id="error_phone" style="display: none;color: crimson"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="address">Address</label>
                                         <input type="text" class="form-control" id="address">
+                                        <p id="error_address" style="display: none;color: crimson"></p>
                                     </div>
                                     @else
                                     <div class="form-group">
                                         <label for="email">Email Address</label>
                                         <input type="text" class="form-control" id="email" value="{{Auth::user()->email}}">
+                                        <p id="error_email" style="display: none;color: crimson"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="name"> Name</label>
                                         <input type="text" class="form-control" id="name" value="{{Auth::user()->first_name}}  {{Auth::user()->last_name}}">
+                                        <p id="error_name" style="display: none;color: crimson"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">Phone Number</label><br>
                                         <span>+84</span><input type="number" class="form-control" id="phone" value="{{Auth::user()->phone}}">
+                                        <p id="error_phone" style="display: none;color: crimson"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="address">Address</label>
                                         <input type="text" class="form-control" id="address" value="{{Auth::user()->address}}">
+                                        <p id="error_address" style="display: none;color: crimson"></p>
                                     </div>
                                     @endguest
                                     <div class="clearfix"></div>
@@ -205,4 +213,23 @@
 
 @section('script')
     <script type="text/javascript" src="{{asset('js/shop/checkout.js')}}"></script>
+    @endsection
+
+@section('modal')
+    <div class="modal fade" id="modal_empty">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h3>Cart empty. Go home to continue shopping</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a href="{{asset('/')}}" class="btn btn-primary">Home</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     @endsection

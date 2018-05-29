@@ -86,12 +86,14 @@
                                     <li style="list-style-type: none; display: inline-block"><a class="color_of_product" data-color="{{$color->product_color}}">{{$color->color}}</a></li>&nbsp;
                                 @endforeach
                             </ul>
+                            <p id="color_error" style="display: none; color: crimson"></p>
                             <div class="wrapper">
                                 <div class="pull-left"><span class="option-label">SIZE:</span></div>
                             </div>
                             <ul class="options-swatch options-swatch--size options-swatch--lg" id="product_sizes">
 
                             </ul>
+                            <p id="size_error" style="display: none;color: crimson"></p>
                             <div class="divider divider--sm"></div>
                             <div class="wrapper">
                                 <div class="pull-left"><span class="option-label text-uppercase">Type :</span></div>
@@ -110,7 +112,8 @@
                             <div class="divider divider--sm"></div>
                             <div class="wrapper">
                                 <div class="pull-left"><span class="qty-label">QTY:</span></div>
-                                <div class="pull-left"><input type="text" name="quantity" class="input--ys qty-input pull-left" value="1" id="qty_quickview"></div>
+                                <div class="pull-left"><input type="text" name="quantity" class="input--ys qty-input pull-left" id="qty_quickview"></div>
+                                <p id="qty_error" style="display: none; color: crimson"></p>
                                 <div class="pull-left"><button type="submit" class="btn btn--ys btn--xxl" id="product_add_cart"><span class="icon icon-shopping_basket"></span> Add to cart</button></div>
                             </div>
                         </div>

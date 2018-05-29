@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditCartRequest;
+use App\Http\Requests\OrderRequest;
 use App\Product;
 use App\ProductColor;
 use App\ProductDetail;
@@ -35,7 +37,7 @@ class CartController extends Controller
 		return $cart;
 	}
 
-	public function add_cart(Request $request){
+	public function add_cart(OrderRequest $request){
 		$product_color_id = $request->product_color_id;
 		$product_color = ProductColor::find($product_color_id);
 		$product = $product_color->product;
@@ -145,7 +147,7 @@ class CartController extends Controller
 		]);
 	}
 
-	public function update_row(Request $request, $rowId){
+	public function update_row(EditCartRequest $request, $rowId){
 		$product = Product::where('id',Cart::get($rowId)->id)->first();
 		$color = $request->color;
 		$size = $request->size;

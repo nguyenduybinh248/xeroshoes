@@ -27,9 +27,9 @@
                             <!-- product image carousel -->
                             <div class="product__inside__carousel slide" data-ride="carousel">
                                 <div class="carousel-inner" role="listbox"  style="height: 300px">
-                                    <div class="item active"> <a href="{{asset('')}}{{$product->slug}}"><img src="{{asset('')}}{{$product->thumbnail}}" alt=""></a> </div>
+                                    <div class="item active"> <a href="{{asset('product')}}/{{$product->slug}}"><img src="{{asset('')}}{{$product->thumbnail}}" alt=""></a> </div>
                                     @foreach($product->images as $image)
-                                        <div class="item"> <a href="{{asset('')}}{{$product->slug}}"><img src="{{asset('')}}{{$image}}" alt=""></a> </div>
+                                        <div class="item"> <a href="{{asset('product')}}/{{$product->slug}}"><img src="{{asset('')}}{{$image}}" alt=""></a> </div>
                                     @endforeach
                                 </div>
                                 <!-- Controls -->
@@ -43,7 +43,7 @@
                         <!-- /product image -->
                         <!-- product name -->
                         <div class="product__inside__name">
-                            <h2><a href="{{asset('')}}{{$product->slug}}">{{$product->name}}</a></h2>
+                            <h2><a href="{{asset('product')}}/{{$product->slug}}">{{$product->name}}</a></h2>
                         </div>
                         <!-- /product name -->
                         <!-- product description -->

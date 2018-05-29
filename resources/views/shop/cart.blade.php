@@ -143,9 +143,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Edit cart</h4>
                 </div>
-                <div class="modal-body" id="body_edit_cart">
+                <div class="modal-body col-xs-12" id="body_edit_cart">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

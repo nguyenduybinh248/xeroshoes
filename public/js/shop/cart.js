@@ -39,7 +39,7 @@ $j(document).on('click','.shopping-cart-table__create',function () {
         type: 'get',
         url: 'http://xeroshoes.shop/cart/edit/' + rowId,
         success: function (response) {
-            $j('#body_edit_cart').html(response.html);
+            $j('#body_edit_cart').replaceWith(response.html);
             $j('#modal_edit').modal('show');
             $j('#hidden_rowId').val(rowId);
         }
@@ -55,6 +55,7 @@ $j(document).on('click','.select_color',function () {
        success: function (response) {
            $j('#select_size_edit').html(response.html);
            $j('#cart_product_color').text(value);
+           $j('#edit_error_color').css('display','none');
        }
    });
 });
@@ -69,6 +70,7 @@ $j(document).on('click','.select_size',function () {
        url: domain + 'cart/size/' + id,
        success: function (response) {
            $j('#cart_product_quantity').attr('max',response);
+           $j('#edit_error_size').css('display','none');
        }
    });
 });
@@ -102,6 +104,30 @@ $j(document).on('click','#btn_change_cart',function (e) {
                $j('#cart_tax').text('$' + response.tax);
                $j('#cart_total_price').text('$' + response.total);
                $j('#modal_edit').modal('hide');
+               $j('#edit_error_color').css('display','none');
+               $j('#edit_error_size').css('display','none');
+               $j('#edit_error_qty').css('display','none');
+           },
+           error: function (xhr, textStatus, errorThrown) {
+               var err = xhr.responseJSON.errors;
+               if (err['color']) {
+                   $j('#edit_error_color').css('display','block').text(err['color'][0]);
+               }
+               else {
+                   $j('#edit_error_color').css('display','none');
+               }
+               if (err['size']) {
+                   $j('#edit_error_size').css('display','block').text(err['size'][0]);
+               }
+               else {
+                   $j('#edit_error_size').css('display','none');
+               }
+               if (err['qty']) {
+                   $j('#edit_error_qty').css('display','block').text(err['qty'][0]);
+               }
+               else {
+                   $j('#edit_error_qty').css('display','none');
+               }
            }
        });
    }

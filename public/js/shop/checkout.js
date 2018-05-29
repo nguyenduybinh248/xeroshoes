@@ -47,24 +47,57 @@ $j(document).on('click','#order',function () {
            name: name
        },
        success: function (response) {
-          if (response.error) {
-              var error = response.error;
-              var mess = [];
-              $j.each(error, function(idx2,val2) {
-                  var str = val2;
-                  mess.push(str);
-              });
-              var messa = mess.join(" . ");
-              toastr.error(messa);
+          if (response.empty){
+              $j('#modal_empty').modal('show');
+              $j('#error_email').css('display','none');
+              $j('#error_phone').css('display','none');
+              $j('#error_address').css('display','none');
+              $j('#error_name').css('display','none');
           }
           else {
-              toastr.success('your order is sent');
-              $j('.tr_cart').remove();
-              $j('#subtotal').text('$0');
-              $j('#tax').text('$0');
-              $j('#total').text('$0');
-              $j('#cart_count').text('0');
+              if (response.error) {
+                  var error = response.error;
+                  var mess = [];
+                  $j.each(error, function(idx2,val2) {
+                      var str = val2;
+                      mess.push(str);
+                  });
+                  var messa = mess.join(" . ");
+                  toastr.error(messa);
+                  $j('#error_email').css('display','none');
+                  $j('#error_phone').css('display','none');
+                  $j('#error_address').css('display','none');
+                  $j('#error_name').css('display','none');
+              }
+              else {
+                  toastr.success('your order is sent');
+                  $j('.tr_cart').remove();
+                  $j('#subtotal').text('$0');
+                  $j('#tax').text('$0');
+                  $j('#total').text('$0');
+                  $j('#cart_count').text('0');
+                  $j('#error_email').css('display','none');
+                  $j('#error_phone').css('display','none');
+                  $j('#error_address').css('display','none');
+                  $j('#error_name').css('display','none');
+              }
           }
+       },
+       error: function (xhr, textStatus, errorThrown) {
+           var err = xhr.responseJSON.errors;
+           console.log(err);
+           if (err['email']) {
+               $j('#error_email').css('display','block').text(err['email'][0]);
+           }
+           if (err['name']) {
+               $j('#error_name').css('display','block').text(err['name'][0]);
+           }
+           if (err['address']) {
+               $j('#error_address').css('display','block').text(err['address'][0]);
+           }
+           if (err['phone']) {
+               $j('#error_phone').css('display','block').text(err['phone'][0]);
+           }
        }
    });
 });

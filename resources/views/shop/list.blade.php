@@ -136,9 +136,9 @@
                                     <!-- product image carousel -->
                                     <div class="product__inside__carousel slide" data-ride="carousel">
                                         <div class="carousel-inner" role="listbox"  style="height: 300px">
-                                            <div class="item active"> <a href="{{asset('')}}{{$product->slug}}"><img src="{{asset('')}}{{$product->thumbnail}}" alt=""></a> </div>
+                                            <div class="item active"> <a href="{{asset('product')}}/{{$product->slug}}"><img src="{{asset('')}}{{$product->thumbnail}}" alt=""></a> </div>
                                             @foreach($product->images as $image)
-                                            <div class="item"> <a href="{{asset('')}}{{$product->slug}}"><img src="{{asset('')}}{{$image}}" alt=""></a> </div>
+                                            <div class="item"> <a href="{{asset('product')}}/{{$product->slug}}"><img src="{{asset('')}}{{$image}}" alt=""></a> </div>
                                             @endforeach
                                         </div>
                                         <!-- Controls -->
@@ -152,7 +152,7 @@
                                 <!-- /product image -->
                                 <!-- product name -->
                                 <div class="product__inside__name">
-                                    <h2><a href="{{asset('')}}{{$product->slug}}">{{$product->name}}</a></h2>
+                                    <h2><a href="{{asset('product')}}/{{$product->slug}}">{{$product->name}}</a></h2>
                                 </div>
                                 <!-- /product name -->
                                 <!-- product description -->
@@ -169,11 +169,11 @@
                                 <!-- /product review -->
                                 <div class="product__inside__hover">
                                     <!-- product info -->
-                                    <div class="product__inside__info">
-                                        <div class="product__inside__info__btns">
-                                            <a data-slug="{{$product->slug}}" class="quick-view quick_view_btn"><b><span class="icon icon-visibility"></span> Quick view</b> </a>
-                                        </div>
-                                    </div>
+                                    {{--<div class="product__inside__info">--}}
+                                        {{--<div class="product__inside__info__btns">--}}
+                                            {{--<a data-slug="{{$product->slug}}" class="quick-view quick_view_btn"><b><span class="icon icon-visibility"></span> Quick view</b> </a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
                                     <!-- /product info -->
                                     <!-- product rating -->
                                     <div class="rating row-mode-hide">
@@ -261,15 +261,18 @@
                                     </div>
                                     <ul  id="product_colors">
                                     </ul>
+                                    <p id="color_error" style="display: none; color: crimson"></p>
                                     <div class="wrapper">
                                         <div class="pull-left"><span class="option-label">SIZE:</span></div>
                                     </div>
                                     <ul class="options-swatch options-swatch--size options-swatch--lg" id="product_sizes">
                                     </ul>
+                                    <p id="size_error" style="display: none;color: crimson"></p>
                                     <div class="divider divider--sm"></div>
                                     <div class="wrapper">
                                         <div class="pull-left"><span class="qty-label">QTY:</span></div>
-                                        <div class="pull-left"><input type="text" name="quantity" class="input--ys qty-input pull-left" value="1" id="qty_quickview"></div>
+                                        <div class="pull-left"><input type="text" name="quantity" class="input--ys qty-input pull-left" id="qty_quickview"></div>
+                                        <p id="qty_error" style="display: none; color: crimson"></p>
                                         <div class="pull-left"><button type="submit" class="btn btn--ys btn--xxl add_cart_btn" id="product_add_cart"><span class="icon icon-shopping_basket"></span> Add to cart</button></div>
                                     </div>
                                 </div>

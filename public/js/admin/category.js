@@ -1,7 +1,6 @@
 $(function () {
     //add new category
-    $('#add-new').on('submit', function (e) {
-
+    $(document).on('click', '#btn_add_category',function (e) {
         e.preventDefault();
         $.ajax({
             type: 'post',
@@ -20,6 +19,8 @@ $(function () {
             },
             error: function (xhr, status, errorThrown) {
                 var err = xhr.responseJSON.errors;
+                alert('a');
+                console.log(err);
                 $('#name-add').append('<p style="color: crimson">'+ err['name'][0] +'</p>');
 
             }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\CategoryRequest;
 use App\Product;
 use Illuminate\Http\Request;
 //use App\Http\Requests\CategoryRequest;
@@ -44,7 +45,7 @@ class CategoryController extends Controller
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request)
+	public function store(CategoryRequest $request)
 	{
 		$category = Category::create($request->only('name'));
 		$slug = str_slug($category->name);
@@ -104,7 +105,7 @@ class CategoryController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id)
+	public function update(CategoryRequest $request, $id)
 	{
 		//
 		$category = Category::find($id);
